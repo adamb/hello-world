@@ -1,5 +1,6 @@
 {
   "name": "hello-world",
+  "homepage": "http://adam.beguelin.com/hello-world",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
