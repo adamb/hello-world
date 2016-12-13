@@ -2,20 +2,56 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+class AgeForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+	  var maxHR = 220 - this.state.value;
+	  var target50 = Math.round(maxHR * 0.5);
+	  var target85 = Math.round(maxHR * 0.85);
+    alert('Max Heart Rate for ' + this.state.value + ' is ' + maxHR + '.\nTarget Range is '+ target50 + ' to ' + target85);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Age:
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+
 class App extends Component {
   render() {
     return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React via adam.beguelin.com</h2>
+          <h2>Welcome to React</h2>
         </div>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+		<AgeForm />
       </div>
     );
   }
 }
+
 
 export default App;
