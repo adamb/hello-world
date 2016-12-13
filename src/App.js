@@ -5,18 +5,18 @@ import './App.css';
 class AgeForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = {age: 50};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({age: event.target.value});
   }
 
   handleSubmit(event) {
-	  var age = Math.abs(this.state.value);
+	  var age = Math.abs(this.state.age);
 	  var maxHR = 220 - age;
 	  var target50 = Math.round(maxHR * 0.5);
 	  var target85 = Math.round(maxHR * 0.85);
@@ -29,7 +29,7 @@ class AgeForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Age:
-          <input type="number" value={this.state.value} onChange={this.handleChange} />
+          <input type="number" value={this.state.age} onChange={this.handleChange} />
         </label>
         <input type="submit" value="Max HR" />
       </form>
