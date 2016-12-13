@@ -16,10 +16,11 @@ class AgeForm extends React.Component {
   }
 
   handleSubmit(event) {
-	  var maxHR = 220 - this.state.value;
+	  var age = Math.abs(this.state.value);
+	  var maxHR = 220 - age;
 	  var target50 = Math.round(maxHR * 0.5);
 	  var target85 = Math.round(maxHR * 0.85);
-    alert('Max Heart Rate for ' + this.state.value + ' is ' + maxHR + '.\nTarget Range is '+ target50 + ' to ' + target85);
+    alert('Max Heart Rate for ' + age + ' is ' + maxHR + '.\nTarget Range is '+ target50 + ' to ' + target85);
     event.preventDefault();
   }
 
@@ -28,9 +29,9 @@ class AgeForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Age:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
+          <input type="number" value={this.state.value} onChange={this.handleChange} />
         </label>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Max HR" />
       </form>
     );
   }
