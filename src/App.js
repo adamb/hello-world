@@ -2,6 +2,18 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+function TargetHR(props) {
+    var age = Math.abs(props.age);
+    var maxHR = 220 - age;  
+    var target50 = Math.round(maxHR * 0.5);
+    var target85 = Math.round(maxHR * 0.85);
+	if (age > 110) age = 110;
+	return <div>	
+		<h1>If you are {age} years old, your max heart rate is {maxHR}.  </h1> 	
+		<h1> Your target range is {target50} to {target85}</h1>
+	</div>;
+}
+
 class AgeForm extends React.Component {
   constructor(props) {
     super(props);
@@ -13,6 +25,13 @@ class AgeForm extends React.Component {
 
   handleChange(event) {
     this.setState({age: event.target.value});
+  var age = Math.abs(this.state.age);
+  var maxHR = 220 - age;  
+  var target50 = Math.round(maxHR * 0.5);
+  var target85 = Math.round(maxHR * 0.85);
+  this.setState({max: maxHR});
+  this.setState({t50: target50});
+  this.setState({t85: target85});
   }
 
   handleSubmit(event) {
@@ -26,13 +45,15 @@ class AgeForm extends React.Component {
 
   render() {
     return (
+	<div>
       <form onSubmit={this.handleSubmit}>
         <label>
           Age:
           <input type="number" value={this.state.age} onChange={this.handleChange} />
         </label>
-        <input type="submit" value="Max HR" />
       </form>
+	  <TargetHR age={this.state.age} max={this.state.max} />
+	</div>
     );
   }
 }
@@ -43,11 +64,9 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+          <h2>Enter your again to compute your target heart rate.</h2>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+		<p />
 		<AgeForm />
       </div>
     );
