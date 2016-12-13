@@ -9,8 +9,8 @@ function TargetHR(props) {
     var target85 = Math.round(maxHR * 0.85);
 	if (age > 110) age = 110;
 	return <div>	
-		<h1>If you are {age} years old, your max heart rate is {maxHR}.  </h1> 	
-		<h1> Your target range is {target50} to {target85}</h1>
+		<h1>Age: {age} </h1> <h1>Max heart rate: {maxHR} </h1> 	
+		<h1> Target range: {target50} to {target85}</h1>
 	</div>;
 }
 
